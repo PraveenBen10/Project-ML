@@ -1,5 +1,5 @@
 numpy
-flask==3.0.0
+flask==2.2.2
 pandas
 Werkzeug==2.2.2
 Jinja2==3.1.2
