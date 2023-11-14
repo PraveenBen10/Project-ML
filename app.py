@@ -37,6 +37,8 @@ def predict():
     final_features = np.array(int_features)
     results = []
 
+    print("PART ABOVE")
+    
     # Iterate through models
     for i in range(len(lm)):
         model = lm[i]
@@ -58,14 +60,20 @@ def predict():
 
             results.append({'Model Name': d[i], 'Prediction': dres[prediction[0]], "BGAC": bacd[i], "BOCD": bocd[i]})
 
+    print("PART 1")
+
+    
     # Find the majority prediction
     predictions = [result['Prediction'] for result in results]
     # majority_prediction = max(Counter(predictions), key=Counter(predictions).get)
     majority_prediction = 1
 
+    print("PART MID")
+    
     # Format the message with the majority prediction
     prediction_message = f"Majority Prediction: {dres[majority_prediction]}"
 
+    print("PART 2")
     print(prediction_message)
 
     return render_template('index.html', prediction_message=prediction_message)
