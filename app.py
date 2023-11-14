@@ -66,6 +66,8 @@ def predict():
     # Format the message with the majority prediction
     prediction_message = f"Majority Prediction: {majority_prediction}"
 
+    print(prediction_message)
+
     return render_template('index.html', prediction_message=prediction_message)
 
 
