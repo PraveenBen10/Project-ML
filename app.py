@@ -8,7 +8,7 @@ modelNB = pickle.load(open('modeln.pkl', 'rb'))
 modelDC = pickle.load(open('modeld.pkl', 'rb'))
 modelC4 = pickle.load(open('modeld.pkl', 'rb'))
 modelRF = pickle.load(open('modelrd.pkl', 'rb'))
-modelNN = pickle.load(open('modelnn.pkl', 'rb'))
+modelNN = pickle.load(open('modelrd.pkl', 'rb'))
 
 bacd = {0: 88.70, 1: 90.16, 2: 76.59, 3: 89.74, 4: 89.27}
 bocd = {0: 89.52, 1: 93.89, 2: 78.04, 3: 91.88, 4: 91.87}
