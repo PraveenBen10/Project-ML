@@ -1,42 +1,99 @@
 <!DOCTYPE html>
-<html >
-<!--From https://codepen.io/frytyler/pen/EGdtg-->
+<html>
 <head>
   <meta charset="UTF-8">
   <title>ML API</title>
   <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
-<link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
-<link href='https://fonts.googleapis.com/css?family=Hind:300' rel='stylesheet' type='text/css'>
-<link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
-<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Hind:300' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <style>
+    body {
+  background-color: #3498db; /* A shade of blue */
+  color: white; /* Text color */
+  font-family: 'Arimo', sans-serif; /* Font family for text */
+  margin: 0; /* Remove default margin */
+  font-size: 10px;
+}
 
-<style>
-  .login  {
-    /* background-color: blue; */
-    text-align: left;
-  }
-  .btn {
-    border: 10px;
-  }
-  .input-group {
-    padding: 10px;
-  }
-  .input {
-    border-radius:10px;
-    padding: 5px;
-    margin-left: 20px;
-  }
+.header-box {
+  background-color: #2c3e50; /* A darker shade for the header box */
+  padding: 20px;
+  text-align: center;
+  max-width: 80%;
+  margin: 20px auto;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
 
-</style>
+    h1 {
+      text-align: center;
+    }
+
+    .login {
+      text-align: left;
+      padding: 20px; /* Add padding for content */
+      margin: 0 auto;
+      max-width: 80%;
+    }
+
+    /* Add your existing styles here */
+
+    .input {
+      text-align: left; 
+      border-radius: 10px;
+      padding: 5px;
+      margin-left: 20px;
+    }
+
+    .btn {
+      border: 10px;
+    }
+
+    .thank-you {
+      text-align: center;
+      font-size: 24px;
+      color: green;
+      margin-top: 20px;
+    }
+    .input-group {
+      text-align: left; /* Align input elements to the left */
+    }
+
+    table {
+      margin: 0 auto;
+      border-collapse: collapse;
+      width: 80%;
+    }
+
+    th, td {
+      padding: 10px 15px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    }
+
+    th {
+      font-size: 18px;
+    }
+
+    td {
+      font-size: 16px;
+    }
+  </style>
 </head>
-
 <body>
-  <h1>Heart Disease Prediction</h1>
- <div class="login">
-	
+  <div class="header-box">
+    <p>Department of Information Technology</p>
+    <p>National Institute of Technology Karnataka, Surathkal 575025</p>
+    <p>Heart Attack Prevention Service</p>
+    <p>Done by, Praveen Aditya</p>
+    <p>Under the guidance of Professor Jaidhar C.D</p>
+  </div>
 
-     <!-- Main Input For Receiving Query to our ML -->
-    <form action="{{ url_for('predict')}}"method="post">
+  
+  <div class="login">
+    <form action="{{ url_for('predict')}}" method="post">
       <div class="input-group">
         <label for="age">Age:</label>
         <input class="input" type="number" id="age" name="age" min="1" max="120" placeholder="20" required style="background-color: white; height: 27px; width: 100px;">
@@ -143,59 +200,32 @@
       <button type="submit" class="btn btn-primary btn-block btn-large" style="width: 50%; margin-left: 25%;margin-top: 15px;">Predict</button>
       <br>
       <br>
-      <div class="input" style="text-align: center;">
-        <style>
-          table {
-            margin: 0 auto;
-            border-collapse: collapse;
-            width: 80%; /* Adjust the width as per your preference */
-          }
-        
-          th, td {
-            padding: 10px 15px;
-            text-align: left;
-            border-bottom: 1px solid #ddd;
-          }
-        
-          th {
-            /* background-color: #f2f2f2; */
-            font-size: 18px;
-          }
-        
-          td {
-            font-size: 16px;
-          }
-        </style>
-        
-        <table>
-          <thead>
-            <tr>
-              <th>Model Name</th>
-              <th>Prediction</th>
-              <th>Accuracy (Bagging)</th>
-              <th>Accuracy (Boosting)</th>
-            </tr>
-          </thead>
-          <tbody>
-            {% for result in results %}
-              <tr>
-                <td>{{ result['Model Name'] }}</td>
-                <td>{{ result['Prediction'] }}</td>
-                <td>{{ result['BGAC'] }}</td>
-                <td>{{ result['BOCD'] }}</td>
-              </tr>
-            {% endfor %}
-          </tbody>
-        </table>
-        
-      </div>
-      
-    </form>
+      <div class="input" style="position: absolute; top: 0; right: 0; margin-top: 250px;">
+        {% if prediction_message %}
+        <p>{{ prediction_message }}</p>
+        <div style="float: right; margin-right: 70px;">
+            {% if majority_prediction == 'YES' %}
+            <p>You are prone to having a heart disease. Please consult a doctor for expert advice.</p>
+            <p>Here are some useful documents for reference:</p>
+            <ul>
+                <li><a href="#">Document 1</a></li>
+                <li><a href="#">Document 2</a></li>
+                <li><a href="#">Document 3</a></li>
+            </ul>
+            {% else %}
+            <p>Congratulations! You do not have a heart disease. Keep maintaining a healthy lifestyle.</p>
+            {% endif %}
+        </div>
+        <div class="thank-you">
+            <p>Thank you for using our service!</p>
+        </div>
+        {% endif %}
+    </div>
     
-  
-
- </div>
-
-
+    
+    
+    
+    </form>
+  </div>
 </body>
 </html>
