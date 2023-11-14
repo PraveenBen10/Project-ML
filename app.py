@@ -24,6 +24,9 @@ dres = {1: "YES", 0: "NO"}
 
 @app.route('/')
 def home():
+    if __name__ == '__main__':
+        port = int(os.environ.get('PORT', 5000))
+        app.run(host='0.0.0.0', port=port)
     return render_template('index.html')
 
 
