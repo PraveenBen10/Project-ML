@@ -1,7 +1,7 @@
 import numpy as np
 from flask import Flask, request, jsonify, render_template
 import pickle
-from collections import Counter
+# from collections import Counter
 import os
 
 app = Flask(__name__)
