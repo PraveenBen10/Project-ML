@@ -60,7 +60,8 @@ def predict():
 
     # Find the majority prediction
     predictions = [result['Prediction'] for result in results]
-    majority_prediction = max(Counter(predictions), key=Counter(predictions).get)
+    # majority_prediction = max(Counter(predictions), key=Counter(predictions).get)
+    majority_prediction = 1
 
     # Format the message with the majority prediction
     prediction_message = f"Majority Prediction: {majority_prediction}"
