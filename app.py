@@ -50,7 +50,7 @@ def predict():
             prediction = model.predict(zl)
 
             results.append(
-                {'Model Name': d[i], 'Prediction': dres[round(prediction[0][0])], "BGAC": bacd[i], "BOCD": bocd[i]})
+                {'Model Name': d[i], 'Prediction': dres[round(prediction[0])], "BGAC": bacd[i], "BOCD": bocd[i]})
 
         else:
             zl = [final_features]
