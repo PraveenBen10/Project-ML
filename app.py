@@ -64,7 +64,7 @@ def predict():
     majority_prediction = 1
 
     # Format the message with the majority prediction
-    prediction_message = f"Majority Prediction: {majority_prediction}"
+    prediction_message = f"Majority Prediction: {dres[majority_prediction]}"
 
     print(prediction_message)
 
